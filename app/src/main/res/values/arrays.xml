@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Scopes automatically proposed and bound in LSPosed -->
+    <string-array name="xposed_scopes">
+        <item>android</item>
+        <item>com.android.systemui</item>
+        <item>miui.systemui.plugin</item>
+        <item>com.mi.android.globallauncher</item>
+        <item>com.miui.home</item>
+    </string-array>
+</resources>

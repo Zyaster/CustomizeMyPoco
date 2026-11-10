@@ -1,0 +1,2 @@
+-keep class com.customizepoco.xposed.** { *; }
+-dontwarn de.robv.android.xposed.**
