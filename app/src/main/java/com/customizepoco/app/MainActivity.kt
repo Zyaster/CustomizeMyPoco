@@ -11,7 +11,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -115,7 +118,7 @@ fun CustomizeMyPocoScreen() {
                 Column {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Icon(
-                            Icons.Default.PhoneAndroid,
+                            Icons.Default.Info,
                             contentDescription = null,
                             tint = Color.White,
                             modifier = Modifier.size(28.dp)
@@ -144,7 +147,7 @@ fun CustomizeMyPocoScreen() {
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
                     SectionTitle(
-                        icon = Icons.Default.Apps,
+                        icon = Icons.Default.Settings,
                         title = "POCO Launcher & Icons"
                     )
 
@@ -222,7 +225,7 @@ fun CustomizeMyPocoScreen() {
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
                     SectionTitle(
-                        icon = Icons.Default.BlurOn,
+                        icon = Icons.Default.Star,
                         title = "SystemUI & Liquid Glass"
                     )
 
@@ -298,7 +301,7 @@ fun CustomizeMyPocoScreen() {
                         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF059669)),
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        Icon(Icons.Default.RestartAlt, contentDescription = null)
+                        Icon(Icons.Default.Refresh, contentDescription = null)
                         Spacer(modifier = Modifier.width(8.dp))
                         Text("Apply & Restart SystemUI")
                     }

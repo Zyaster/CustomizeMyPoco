@@ -31,5 +31,6 @@ jobs:
     - name: Upload Debug APK Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: CustomizeMyPoco-debug.apk
+        name: CustomizeMyPoco-debug
         path: app/build/outputs/apk/debug/app-debug.apk
+        retention-days: 14
