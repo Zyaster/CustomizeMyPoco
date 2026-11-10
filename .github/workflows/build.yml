@@ -3,9 +3,13 @@ name: Build CustomizeMyPoco APK
 on:
   push:
     branches: [ "main" ]
+    tags: [ "v*" ]
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -28,9 +32,34 @@ jobs:
     - name: Build Debug APK with Gradle
       run: ./gradlew assembleDebug --stacktrace
 
+    - name: Prepare APK Asset
+      run: |
+        mkdir -p release-assets
+        cp app/build/outputs/apk/debug/app-debug.apk release-assets/CustomizeMyPoco.apk
+
     - name: Upload Debug APK Artifact
       uses: actions/upload-artifact@v4
       with:
         name: CustomizeMyPoco-debug
-        path: app/build/outputs/apk/debug/app-debug.apk
+        path: release-assets/CustomizeMyPoco.apk
         retention-days: 14
+
+    - name: Create GitHub Release
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: softprops/action-gh-release@v2
+      with:
+        files: release-assets/CustomizeMyPoco.apk
+        tag_name: ${{ github.ref_name }}
+        name: CustomizeMyPoco ${{ github.ref_name }}
+        body: |
+          ### CustomizeMyPoco Release ${{ github.ref_name }} 🚀
+          
+          **Features:**
+          * 🔍 **Extreme Icon Scaling:** Up to 200% icon size in POCO Launcher.
+          * 🏷️ **Hide Icon Labels:** Clean icon-only minimalist layout.
+          * 🪟 **Liquid Glass & Gaussian Blur:** Real-time blur for Control Center and Notification Shade.
+          * 📂 **Unlock XXL 3×3 Folders & Super Icons:** Flagship folder grids on POCO.
+          * ⚡ **120 FPS Unlock:** Prevents refresh rate drop when opening panels.
+          * 👑 **Flagship Profile:** Spoofing `deviceLevel = 3` and `IS_POCO = false`.
+        draft: false
+        prerelease: false
